@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE-2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            max-width: 100vw;
+            min-height: 100vh;
+            max-height: auto;
+            color: #2d3b49;
+            letter-spacing: 1.5;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-weight: 600;
+        }
+
+        .btn {
+            border: none;
+            background-color: #2d3b49;
+            color: #fff;
+            padding: 10px 36px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 50px;
+        }
+
+        section {
+            width: 80%;
+            height: 100%;
+            padding: 8vh 7vw 0vh;
+        }
+        section, .searchDivWrap{
+            padding-bottom: 0;
+            padding-right: 0;
+            margin-right: 0;
+        }
+
+        .halfImage {
+            width: 100vw;
+            height: 50vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .halfImage img {
+            position: relative;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 135%;
+        }
+
+        .logo {
+            margin-bottom: 10px;
+        }
+
+        .floatRightOptions {
+            float: right;
+            font-size: 12px;
+            line-height: 3;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .floatRightOptions a {
+            color: #2D3B49;
+            margin-left: 20px;
+            padding-bottom: 5px;
+            font-weight: 400;
+        }
+
+        .floatRightOptions a:visited,
+        .floatRightOptions a:hover,
+        .floatRightOptions a:active {
+            color: #2D3B49;
+            border-bottom: 1.7px solid #2D3B49;
+            font-weight: bold;
+        }
+
+        section div:nth-of-type(2) {
+            margin: 60px auto 40px;
+        }
+
+        section div:nth-of-type(2) h2 {
+            text-align: center;
+            font-size: 30px;
+            padding: 50px 50px 0;
+            font-weight: bold;
+        }
+
+        section .searchDivWrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        section .searchDivWrap .searchDiv {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            /* padding: 50px 0; */
+            margin-bottom: 20px;
+        }
+
+        section .searchDivWrap .searchDiv form {
+            margin-bottom: 30px;
+        }
+
+        section .searchDivWrap .searchDiv form,
+        section .searchDivWrap .searchDiv form div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        section .searchDivWrap .searchDiv form div input {
+            border: none;
+            padding: 5px;
+            padding-left: 10px;
+            width: 100%;
+            color: #2d3b49;
+            background-color: #f1f2f4;
+            font-size: 13px;
+        }
+
+        section .searchDivWrap .searchDiv form div {
+            padding: 10px 20px;
+            color: #000;
+            border-radius: 22px;
+            /* border-bottom: 1px solid #2d3b49; */
+            background-color: #f1f2f4;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        section .searchDivWrap .searchDiv h6 {
+            opacity: 0.7;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        section .searchDivWrap .searchDiv .tagBox,
+        section .searchDivWrap .searchDiv .tagBox .tag {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        section .searchDivWrap .searchDiv .tagBox .tag {
+            max-width: max-content;
+            padding: 10px 24px;
+            margin: 2px 10px;
+            margin-left: 0;
+            border: 1px solid #2d3b49;
+            border-radius: 22px;
+        }
+
+        section .searchDivWrap .categoryBoxWrap {
+            width: 100%;
+            height: fit-content;
+            margin-top: 30px;
+            /* border: 1px solid #2d3b49; */
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            flex-wrap: wrap;
+        }
+
+        section .searchDivWrap .categoryBoxWrap .categoryBox {
+            width: 28%;
+            /* height: 41%; */
+            height: fit-content;
+            margin: 20px;
+            padding: 20px 0;
+            border-top: 1.5px solid #2d3b4947;
+            border-bottom: 1.5px solid #2d3b4947;
+            display: flex;
+        }
+
+        .categoryBox .left {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            height: 100%;
+            line-height: 1.5;
+            color: #2d3b49eb;
+            font-size: 14px;
+        }
+
+        .categoryBox .left h3 {
+            margin: 20px 0;
+        }
+
+        .categoryBox .left h6,
+        .categoryBox .left h5 {
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .categoryBox .left h6 {
+            line-height: 2.2;
+        }
+
+        .categoryBox .left .btn {
+            padding: 8px 24px;
+            margin: 5px 0;
+            width: fit-content;
+        }
+
+        .categoryBox .right {
+            float: right;
+            /* text-align: right; */
+            width: 30%;
+            /* height: 100%; */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            /* justify-content: center; */
+            /* background-color: yellow; */
+        }
+
+        .categoryBox .right img {
+            /* transform: translateX(8px); */
+            margin-right: 25px;
+            transform: translateY(-50px);
+        }
+
+        .categoryBox .left a {
+            font-size: 10px;
+            /* margin-top: 100%; */
+            color: #2d3b49;
+            position: relative;
+            left: 100%;
+            bottom: 15px;
+        }
+
+        /* features */
+
+        .featureDiv {
+            width: 70%;
+            /* margin-left: auto; */
+            /* height: 100vh; */
+            margin-left: 5%;
+            /* border-top: 1.5px solid #2D3B49; */
+            /* border-bottom: 1.5px solid #2D3B49; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 50px;
+            padding-bottom: 20px;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .featureDiv .featureBox {
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+            color: #2D3B49;
+            font-weight: bold;
+        }
+
+        .featureDiv .featureBox::before {
+            content: '';
+            position: relative;
+            top: 3%;
+            left: 5%;
+            width: 100px;
+            height: 70px;
+            border-radius: 50%;
+            z-index: -1;
+            background-color: #f1f2f4;
+        }
+
+        .featureDiv .featureBox .featureTitle {
+            width: 50%;
+            font-size: 22px;
+            margin-right: 20px;
+        }
+
+        .featureDiv .featureBox .featurePara {
+            width: 50%;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 20px;
+            padding-top: 0;
+            line-height: 2;
+        }
+
+        .featureLogo {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            top: 0%;
+            left: -15%;
+            overflow: hidden;
+        }
+
+        .featureLogo img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .featureDiv div .bookBtn a {
+            color: #f1f2f4;
+        }
+
+        .featureDiv div .bookBtn {
+            border: none;
+            border-radius: 20px;
+            padding: 10px 50px;
+            background-color: #2D3B49;
+            max-width: max-content;
+            margin-top: 50px;
+            margin-bottom: 80px;
+            margin-left: -24vw;
+        }
+
+        .hrDiv {
+            width: 70%;
+            height: 1.5px;
+            opacity: 0.7;
+            background-color: #2D3B49;
+        }
+
+        /* package div styling */
+        .packageDivWrap {
+            width: 100vw;
+            background-color: #f1f2f4;
+            margin-top: 100px;
+        }
+
+        .packageDiv {
+            padding: 50px 0;
+            display: flex;
+            flex-direction: column;
+            line-height: 2;
+            /* justify-content: center; */
+            align-items: center;
+            width: 100%;
+            color: #2D3B49;
+        }
+
+        .packageDiv .packageTitle {
+            font-size: 22px;
+            font-weight: 600;
+            padding-bottom: 20px;
+            line-height: 2;
+        }
+
+        .packageDiv .packageBox,
+        .packageDiv .packageLogo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 30px;
+        }
+
+        .packageDiv .packageBox .packageLogo {
+            margin: 30px 20px;
+            width: 150px;
+            height: 150px;
+            line-height: 3.5;
+        }
+
+        .packageDiv .packageBox {
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 50%;
+        }
+
+        /* service div styling */
+
+        .serviceDiv {
+            width: 90%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            line-height: 1.8;
+            color: #2D3B49;
+            padding-top: 100px;
+            margin-top: 50px;
+        }
+
+        .serviceDiv .circleImage {
+            margin-bottom: 50px;
+        }
+
+        .serviceDiv .row {
+            margin-top: 50px;
+            /* border-top: 1.5px solid #2D3B49; */
+        }
+
+        .serviceDiv .row,
+        .serviceDiv .col {
+            width: 70%;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            font-size: 12px;
+        }
+
+        .serviceDiv .col {
+            width: 50%;
+            flex-direction: column;
+            /* padding: 50px 10px 0px; */
+        }
+        .serviceDiv .row .col:nth-of-type(2){
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        /* footer div styling */
+        .blueDiv {
+            width: 100vw;
+            background-color: #2D3B49;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .blueDiv .contactBox {
+            border-top: 2px solid #f1f2f4;
+            border-bottom: 2px solid #f1f2f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 12px;
+            width: 50%;
+            padding: 80px 50px;
+            margin: 50px 50px 0px;
+            text-align: center;
+            line-height: 2;
+            font-weight: bold;
+        }
+
+        .contactBox form div,
+        .contactBox form div input {
+            /* color: #f1f2f4; */
+            background: transparent;
+            padding: 7px;
+            border: none;
+            width: 100%;
+        }
+
+        .contactBox form div input {
+            border: 1px solid #f1f2f4;
+            border-radius: 22px;
+            width: 50%;
+            padding-left: 30px;
+            color: #f1f2f4;
+            margin: 10px 0px;
+            /* background-color: #122635; */
+        }
+
+        .contactBox form div button {
+            border: none;
+            background-color: #f1f2f4;
+            padding: 9px 40px;
+            color: #2D3B49;
+            font-weight: bold;
+            font-size: 12px;
+            border-radius: 18px;
+            position: relative;
+            z-index: 2;
+            transform: translateX(-30%);
+        }
+
+
+        /* footerbox styling */
+
+        .footerBox {
+            width: 80%;
+            min-width: 50vh;
+            margin: 0;
+            padding: 0vh 10vw 5vh;
+        }
+
+        .footerRow div {
+            width: 100%;
+            display: flex;
+
+        }
+
+        .footerRow div .left,
+        .footerRow div .right {
+            width: 50%;
+        }
+
+
+        .right img {
+            margin-left: auto;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        .leftCol {
+            margin-left: 20px;
+            font-size: 11px;
+            font-weight: 300;
+            color: #f1f2f4;
+            flex-direction: column;
+            line-height: 1.8;
+        }
+
+        .rightRow img {
+            margin-top: 50px;
+        }
+
+        /* ------------------------------------------------------------- */
+        /*              RESPONSIVE BEHAVIOUR STYLING                     */
+        /* ------------------------------------------------------------- */
+
+        @media (min-width: 901px) and (max-width: 1095px) {
+            section .searchDivWrap .categoryBoxWrap .categoryBox {
+                width: 40%;
+            }
+        }
+
+        @media (min-width: 100px) and (max-width: 900px) {
+            section, section .searchDivWrap{
+                padding-bottom: 0;
+            }
+            section div:nth-of-type(2),
+            section div:nth-of-type(2) h2 {
+                margin-left: 0;
+                text-align: left;
+                font-size: 20px;
+                width: 100%;
+            }
+            section div:nth-of-type(2) h2{
+                margin-top: -10%;
+            }
+
+            .floatRightOptions {
+                display: none;
+            }
+
+            section .packageDivWrap{
+                align-items: flex-start;
+            }
+            section .searchDivWrap .searchDiv{
+                width: 100%;
+            }
+
+            section .packageDivWrap .packageDiv {
+                /* padding-left: 0; */
+                /* margin-left: 0; */
+                flex-wrap: wrap;
+                /* align-items: flex-start; */
+            }
+
+            section .searchDivWrap .packageDivWrap .packageDiv .packageBox {
+                width: 100%;
+            }
+
+            section .packageDivWrap .packageDiv .packageLogo {
+                padding: 0;
+                margin: 0;
+            }
+
+            section .packageDivWrap .packageDiv .packageLogo img {
+                width: 80px;
+                height: 80px;
+            }
+
+            section .searchDivWrap .categoryBoxWrap .categoryBox,
+            section .searchDivWrap .searchDiv .tagBox,
+            section .searchDivWrap .searchDiv form,
+            section .searchDivWrap .searchDiv form div,
+            section .searchDivWrap .packageDivWrap .packageDiv,
+            section .searchDivWrap .blueDiv,
+            section .searchDivWrap .blueDiv .contactBox {
+                width: 80vw;
+            }
+
+            section .searchDivWrap .categoryBoxWrap {
+                justify-content: center;
+            }
+
+            .halfImage {
+                height: auto;
+            }
+
+            .halfImage img {
+                width: 110%;
+            }
+
+            section .searchDivWrap .featureDiv .featureBox,
+            section .searchDivWrap .featureDiv .featureBox .featureTitle,
+            section .searchDivWrap .featureDiv .featureBox .featurePara {
+                width: 90%;
+                text-align: left;
+                align-items: flex-start;
+                justify-content: flex-start;
+                flex-direction: column;
+                padding: 0;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .featureDiv .featureBox::before {
+                top: 100px;
+                left: -10%;
+                width: 70px;
+                height: 70px;
+            }
+
+            section .searchDivWrap .featureDiv .bookDiv .bookBtn {
+                width: 80vw;
+                transform: translateX(30px);
+            }
+
+            .hrDiv {
+                width: 80vw;
+                margin-left: auto;
+            }
+
+            section .searchDivWrap .serviceDiv {
+                width: 80vw;
+            }
+
+            section .searchDivWrap .serviceDiv .row,
+            section .searchDivWrap .serviceDiv .row .col {
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                margin: 0;
+                margin-bottom: 5px;
+                padding: 15px 10px;
+                width: 80vw;
+            }
+
+            section .searchDivWrap .serviceDiv .row .col h3 {
+                font-size: 15px;
+            }
+
+            section .searchDivWrap .blueDiv .contactBox,
+            section .searchDivWrap .blueDiv .contactBox form div input,
+            section .searchDivWrap .blueDiv .contactBox form div button,
+            section .searchDivWrap .blueDiv .footerBox {
+                width: 75%;
+            }
+
+            section .searchDivWrap .blueDiv .contactBox form div button {
+                margin: auto;
+                transform: translateX(1%);
+            }
+            section .searchDivWrap .blueDiv .footerBox .footerRow .firstRow{
+                padding: 0;
+                width: 60%;
+            }
+            section .searchDivWrap .blueDiv .footerBox .footerRow .firstRow .right img{
+                transform: translateY(-50px);
+            }
+            section .searchDivWrap .blueDiv .footerBox .footerRow .secondRow{
+                flex-direction: column;
+                margin: auto;
+                padding: 0;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            section .searchDivWrap .blueDiv .footerBox .footerRow .secondRow .right{
+                transform: translateX(10%);
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            section .searchDivWrap .blueDiv{
+                width: 100vw;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="halfImage">
+        <img src="../../images/shutterstock_1292496331.png" alt="bg-image" />
+    </div>
+    <section>
+        <div class="logo">
+            <img width="60px" height="70px" src="../../images/Asset 1-8.png" alt="bg-image" />
+            <div class="floatRightOptions">
+                <a href="#">Swasth card</a>
+                <a href="#">Swasth care</a>
+            </div>
+        </div>
+        <div>
+            <h2>Choose yourself today!</h2>
+        </div>
+        <div class="searchDivWrap">
+
+            <div class="searchDiv">
+                <form action="/" method="post">
+                    <div>
+                        <img width="10px" height="10px" src="../../images/Component 9 – 1.png" alt="bg-image" />
+                        <input type="text" placeholder="Search for a test or package by name" />
+                    </div>
+                </form>
+                <h6>Popular search results</h6>
+                <div class="tagBox">
+                    <div class="tag">
+                        Covid packages &nbsp;
+                        <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                    </div>
+
+                    <div class="tag">
+                        PCOS/PCOD &nbsp;
+                        <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                    </div>
+
+                    <div class="tag">
+                        Diabetes &nbsp;
+                        <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                    </div>
+                </div>
+                <!-- tag box ends here -->
+            </div>
+            <!-- search div ends here -->
+
+            <div class="categoryBoxWrap">
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png"
+                            alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png"
+                            alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png"
+                            alt="bg-image" />
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- category box ends here -->
+
+            <div class="hrDiv"></div>
+
+            <div class="featureDiv">
+                <div class="featureBox">
+                    <div class="featureTitle">
+                        <div class="featureLogo">
+                            <img src="../../images/back-in-time.png" />
+                        </div>
+                        On Time arrival of our technician
+                    </div>
+                    <div class="featurePara">
+                        The assigned technician will reach the assigned location for sample collection.
+                        They are certified and trained to give you almost painless experience.
+                    </div>
+                </div>
+                <!-- ----------------------------------------- -->
+                <div class="featureBox">
+                    <div class="featureTitle">
+                        <div class="featureLogo">
+                            <img src="../../images/tracking.png" />
+                        </div>
+                        Sample tracking
+                    </div>
+                    <div class="featurePara">
+                        You can track how much time it takes for your sample to be submitted to the testing lab.
+                        Timely sample deposition ensures accurate results.
+                    </div>
+                </div>
+                <!-- ----------------------------------------- -->
+                <div class="featureBox">
+                    <div class="featureTitle">
+                        <div class="featureLogo">
+                            <img src="../../images/mail-inbox.png" />
+                        </div>
+                        Reports received in inbox
+                    </div>
+                    <div class="featurePara">
+                        Receive a soft copy of your test results in your inbox or through WhatsApp.
+                    </div>
+                </div>
+                <!-- ----------------------------------------- -->
+                <div class="bookDiv">
+                    <button class="bookBtn">
+                        <a href="#">Book a test</a>
+                    </button>
+                </div>
+            </div>
+            <!-- feature div ends here -->
+
+            <div class="hrDiv"></div>
+
+            <div class="serviceDiv">
+                <img class="circleImage" width="250px" height="250px" src="../../images/Mask Group 21.png" alt="heartImage" />
+
+                <div class="hrDiv"></div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <h3>Book a test</h3>
+                    </div>
+                    <div class="col">
+                        Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum is
+                        simply a dummy text of the printing and typesetting industry.
+                    </div>
+                </div>
+
+                <div class="hrDiv"></div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <h3>Consult a doctor</h3>
+                    </div>
+                    <div class="col">
+                        Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum is
+                        simply a dummy text of the printing and typesetting industry.
+                    </div>
+                </div>
+
+                <div class="hrDiv"></div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <h3>Join Communities</h3>
+                    </div>
+                    <div class="col">
+                        Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum is
+                        simply a dummy text of the printing and typesetting industry.
+                    </div>
+                </div>
+
+                <div class="hrDiv"></div>
+
+
+            </div>
+
+            <div class="packageDivWrap">
+                <div class="packageDiv">
+                    <div class="packageTitle">Explore packages</div>
+                    <div class="packageBox">
+                        <div class="packageLogo"><img width="120px" height="120px" src="../../images/Mask Group 22.png" />PCOD
+                        </div>
+                        <div class="packageLogo"><img width="120px" height="120px"
+                                src="../../images/Mask Group 22-1.png" />Natal
+                        </div>
+                        <div class="packageLogo"><img width="120px" height="120px"
+                                src="../../images/Mask Group 22-2.png" />Men's
+                            Health</div>
+                        <div class="packageLogo"><img width="120px" height="120px"
+                                src="../../images/Mask Group 22-3.png" />Diabetes</div>
+                        <div class="packageLogo"><img width="120px" height="120px"
+                                src="../../images/Mask Group 22-4.png" />Mental
+                            Health</div>
+                        <div class="packageLogo"><img width="120px" height="120px"
+                                src="../../images/Mask Group 22-5.png" />Oncology</div>
+                    </div>
+                </div>
+            </div>
+            <!-- package div wrap ends here  -->
+
+            <div class="blueDiv">
+                <div class="contactBox" style="color: #f1f2f4;">
+                    <h3><b>Just a call away </b></h3>
+                    <p>We are always within reach to answer any doubts or questions.</p>
+                    <form action="#" method="post">
+                        <div>
+                            <input type="text" placeholder="Type in your query" />
+                            <button type="submit" class="btn">
+                                Send
+                            </button>
+                        </div>
+                    </form>
+                    <p>Or call us at &nbsp; <img width="15px" height="15px" src="../../images/Group 5083.png" /> &nbsp; + 91
+                        9999999999</p>
+                </div>
+                <!-- contact div ends here -->
+
+                <div class="footerBox">
+                    <div class="footerRow">
+                        <div class="firstRow">
+                            <div class="left">
+                                <img width="100px" height="100px" src="../../images/White logo vertical.png" />
+                            </div>
+                            <div class="right">
+                                <img width="35px" height="35px" src="../../images/Group 5093.png" />
+                            </div>
+                        </div>
+                        <div class="secondRow">
+                            <div class="left leftCol">
+                                <p>#677, 1st Floor, Suite No. 348, 27th Main,
+                                    <br />13th Cross HSR Layout,
+                                    <br /> Sector 1, Bangalore, Karnataka, India, 560102,
+                                </p>
+                                <br />
+                                <p><span style="color: rgb(198, 198, 198); font-weight: bold;">Powered by </span><span
+                                        class="medpiper-logo">Medpiper</span></p>
+                            </div>
+                            <div class="right rightRow">
+                                <div style="width: 70%"></div>
+                                <img width="35px" height="35px" src="../../images/Group 5085.png" />
+                                <img width="35px" height="35px" src="../../images/Group 5086.png" />
+                                <img width="35px" height="35px" src="../../images/Group 5087.png" />
+                                <img width="35px" height="35px" src="../../images/Group 5088.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer div ends here -->
+            </div>
+            <!-- blue div ends here -->
+        </div>
+        <!-- search div wrap ends here -->
+
+
+
+    </section>
+</body>
+
+</html>

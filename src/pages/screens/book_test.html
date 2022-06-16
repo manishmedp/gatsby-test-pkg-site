@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a test</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body{
+            /* width: 100vw; */
+            max-width: 100vw;
+            min-height: 100vh;
+            max-height: auto;
+            color: #2d3b49;
+            letter-spacing: 1.5;
+        }
+
+        h2{
+            font-weight: 600;
+        }
+
+        .btn{
+            border: none;
+            background-color: #2d3b49;
+            color: #fff;
+            padding: 8px 36px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+        section{
+            width: 80%;
+            height: 100%;
+            padding: 8vh 8vw;
+        }
+
+        .halfImage{
+            width: 100vw;
+            height: 35vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .halfImage img{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .logo{
+            margin-bottom: 50px;
+        }
+        section .bookTestDiv{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 15px 1px;
+        }
+        section .searchDiv{
+            padding: 50px 0px;
+            margin-bottom: 20px;
+        }
+        section .searchDiv form{
+            margin-bottom: 30px;
+        }
+        section .searchDiv form, section .searchDiv form div{
+            display: flex;
+            align-items: center;
+            width: 50%;
+        }
+        section .searchDiv form div input{
+            border: none;
+            padding: 5px;
+            padding-left: 10px;
+            width: 100%;
+            color: #2d3b49;
+            font-size: 12px;
+        }
+        section .searchDiv form div{
+            padding: 8px 0px;
+            border-bottom: 1px solid #2d3b49;
+        }
+        section .searchDiv h6{
+            opacity: 0.7;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        section .searchDiv .tagBox, section .searchDiv .tagBox .tag{
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        section .searchDiv .tagBox .tag{
+            max-width: fit-content;
+            padding: 10px 24px;
+            margin: 2px 10px;
+            margin-left: 0;
+            border: 1px solid #2d3b49;
+            border-radius: 22px;
+        }
+
+        section .categoryDiv .categoryType a{
+            text-decoration: none;
+            color: #2d3b4993;
+            font-weight: 500;
+            margin-right: 20px;
+            padding: 1px 3px;
+        }
+        .active,section .categoryDiv .categoryType a:hover {
+            border-bottom: 2px solid #2d3b49;
+            color: #2d3b49 !important;
+            font-weight: 700;
+        }
+        section .categoryDiv .categoryBoxWrap{
+            width: 100%;
+            height: 100vh;
+            margin-top: 30px;
+            /* border: 1px solid #2d3b49; */
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            flex-wrap: wrap;
+        }
+        section .categoryDiv .categoryBoxWrap .categoryBox{
+            width: 28%;
+            /* height: 41%; */
+            height: fit-content;
+            margin: 20px;
+            padding: 20px 0;
+            border-top: 1.5px solid #2d3b4947;
+            border-bottom: 1.5px solid #2d3b4947;
+            display: flex;
+        }
+
+        .categoryBox .left{
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            height: 100%;
+            line-height: 1.5;
+            color: #2d3b49eb;
+            font-size: 14px;
+        }
+        .categoryBox .left h3{
+            margin: 20px 0;
+        }
+        .categoryBox .left h6, .categoryBox .left h5{
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        .categoryBox .left h6{
+            line-height: 2;
+        }
+        .categoryBox .left .btn{
+            padding: 8px 24px;
+            margin: 5px 0;
+            width: fit-content;
+        }
+        .categoryBox .right{
+            float: right;
+            /* text-align: right; */
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .categoryBox .right img{
+            transform: translateX(18px);
+        }
+        .categoryBox .left a{
+            font-size: 10px;
+            /* margin-top: 100%; */
+            color: #2d3b49;
+            position: relative;
+            left: 100%;
+            bottom: 15px;
+        }
+        /* ------------------------------------------------------------- */
+        /*              RESPONSIVE BEHAVIOUR STYLING                     */
+        /* ------------------------------------------------------------- */
+
+        @media (min-width: 901px) and (max-width: 1095px){
+            section .categoryDiv .categoryBoxWrap .categoryBox{
+                width: 40%;
+            }
+        }
+
+        @media (min-width: 100px) and (max-width: 900px){
+            section .categoryDiv .categoryBoxWrap .categoryBox,
+            section .searchDiv .tagBox,
+            section .searchDiv form, section .searchDiv form div{
+                width: 100%;
+            }
+            section .categoryDiv .categoryBoxWrap{
+                justify-content: center;
+            }
+            .halfImage{
+                height: auto;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="halfImage">
+        <img src="../../images/Mask Group 30.png" alt="bg-image" />
+    </div>
+    <section>
+        <div class="logo">
+            <img width="60px" height="70px" src="../../images/Asset 1-8.png" alt="bg-image" />
+        </div>
+        <div class="bookTestDiv">
+            <img width="25px" height="25px" src="../../images/Component 29 – 17.png" alt="bg-image" />
+            &nbsp; &nbsp;
+            <h2>Book a test</h2>
+        </div>
+        <hr style="width: 80%;"/>
+        <div class="searchDiv">
+            <form action="/" method="post">
+                <div>
+                    <img width="10px" height="10px" src="../../images/Component 9 – 1.png" alt="bg-image" />
+                    <input type="text" placeholder="Search for a test or package by name"/>
+                </div>
+                <button class="btn">Search</button>
+            </form>
+            <h6>Popular search results</h6>
+            <div class="tagBox">
+                <div class="tag">
+                    Covid packages &nbsp;
+                    <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                </div>
+
+                <div class="tag">
+                    PCOS/PCOD &nbsp;
+                    <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                </div>
+
+                <div class="tag">
+                    Diabetes &nbsp;
+                    <img width="12px" height="12px" src="../../images/Component 127 – 42.png" alt="bg-image" />
+                </div>
+            </div>
+            <!-- tag box ends here -->
+        </div>
+        <!-- search div ends here -->
+        <div class="categoryDiv">
+            <div class="categoryType">
+                <a class="active" href="#">All</a> 
+                <a href="#">Packages</a> 
+                <a href="#">Tests</a> 
+            </div>
+
+            <div class="categoryBoxWrap">
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+                
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+                <div class="categoryBox">
+                    <div class="left">
+                        <h4>Test/Package name</h4>
+                        <h5>Category name</h5>
+                        <h3>Rs. 1200</h3>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <h6>Lorem Ipsum is the dummy text.</h6>
+                        <a href="#" target="_blank">See all details</a>
+                        <button class="btn">
+                            Book now
+                        </button>
+                    </div>
+                    <div class="right">
+                        <img style="border-radius: 50%" width="50px" height="50px" src="../../images/Mask Group 22.png" alt="bg-image" />
+                    </div>
+                </div>
+
+            </div>
+            <!-- category box ends here -->
+        </div>
+    </section>
+</body>
+</html>

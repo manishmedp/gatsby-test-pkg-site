@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceed to pay and book</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            max-width: 100vw;
+            min-height: 100vh;
+            max-height: auto;
+            color: #2d3b49;
+            letter-spacing: 1.5;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-weight: 600;
+        }
+
+        .btn {
+            border: none;
+            background-color: #2d3b49;
+            color: #fff;
+            padding: 10px 36px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 50px;
+        }
+
+        section {
+            width: 80%;
+            height: 100%;
+            padding: 8vh 8vw 1vh;
+        }
+
+        .halfImage {
+            width: 100vw;
+            height: 30vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .halfImage img {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo {
+            margin-bottom: 10px;
+        }
+
+        section .bookTestDiv {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 15px 1px;
+        }
+
+        section .wrapperBox {
+            width: 100%;
+            height: 100%;
+        }
+
+        section .wrapperBox,
+        section .wrapperBox .left,
+        section .wrapperBox .right {
+            display: flex;
+        }
+
+        section .wrapperBox .right {
+            width: 30%;
+        }
+
+        section .wrapperBox .left {
+            width: 70%;
+        }
+
+        section .wrapperBox .left form {
+            width: 80%;
+            padding: 20px 0;
+            line-height: 2.2;
+            font-weight: 600;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        section .wrapperBox .left form div {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        section .wrapperBox .left form div label {
+            margin-right: 10px;
+            min-width: 100px;
+            max-width: max-content;
+        }
+
+        section .wrapperBox .left form div input {
+            padding: 10px 20px;
+            margin: 2px 10px;
+            border: none;
+            background-color: transparent;
+            border: 2px solid #2d3b49;
+            border-radius: 22px;
+            width: 100%;
+        }
+        section .wrapperBox .left form div input[type="radio"]{
+            padding: 8px;
+        }
+        section .wrapperBox .left form div input[type="date"],
+        section .wrapperBox .left form div input[type="datetime-local"]{
+            color: #2d3b49;
+            font-size: 12px;
+        }
+        section .wrapperBox .left form .full {
+            width: 100%;
+        }
+
+        section .wrapperBox .left form .half {
+            width: 45%;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateX(-15px);
+        }
+
+        section .wrapperBox .right {
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: left;
+            line-height: 2.2;
+            font-size: 12px;
+        }
+
+        section .wrapperBox .right div h2 {
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        section .wrapperBox .right div h1 {
+            transform: translateY(-10px);
+            font-size: 20px;
+        }
+
+        section .wrapperBox .right div p {
+            opacity: 0.7;
+        }
+
+        section .wrapperBox .left .greenText {
+            color: #72B15A;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+
+        /* ------------------------------------------------------------- */
+        /*              RESPONSIVE BEHAVIOUR STYLING                     */
+        /* ------------------------------------------------------------- */
+
+
+        @media (min-width: 100px) and (max-width: 900px) {
+
+            section .wrapperBox {
+                flex-direction: column;
+            }
+            section .wrapperBox .left{
+                width: 95%;
+            }
+
+            section .wrapperBox .left form{
+                width: 100%;
+            }
+            section .wrapperBox .left form div{
+                flex-direction: column;
+            }
+            section .wrapperBox .left form .full,
+            section .wrapperBox .left form .half{
+                width: 90%;
+                align-items: flex-start;
+                text-align: left;
+            }
+            section .wrapperBox .left form .greenText,
+            section .wrapperBox .left form .consultationBox{
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            section .wrapperBox .left form div button{
+                width: 80vw;
+                padding: 15px 36px;
+                font-size: 15px;
+            }
+
+            section .wrapperBox .right{
+                width: 100%;
+                align-items: flex-start;
+                display: none;
+            }
+
+            .halfImage {
+                height: auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="halfImage">
+        <img src="../../images/Mask Group 30.png" alt="bg-image" />
+    </div>
+    <section>
+        <div class="logo">
+            <img width="60px" height="70px" src="../../images/Asset 1-8.png" alt="bg-image" />
+        </div>
+        <div class="bookTestDiv">
+            <img width="25px" height="25px" src="../../images/Component 29 – 17.png" alt="bg-image" />
+        </div>
+        <div class="wrapperBox">
+            <div class="left">
+                <form action="/" method="POST">
+                    <div class="full">
+                        <label>Full name</label>
+                        <input type="text" />
+                    </div>
+                    <div class="half">
+                        <label>E-mail</label>
+                        <input type="email" />
+                    </div>
+                    <div class="half">
+                        <label>Mobile number</label>
+                        <input type="number" />
+                    </div>
+                    <div class="full">
+                        <label>Address</label>
+                        <input type="text" />
+                    </div>
+                    <div class="half">
+                        <label>City</label>
+                        <input type="text" />
+                    </div>
+                    <div class="half">
+                        <label>Pincode</label>
+                        <input type="number" />
+                    </div>
+                    <div class="full greenText">
+                        <img width="15px" height="15px" src="../../images/Group 7022.png" alt="bg-image" />
+                        &nbsp;
+                        We are servicing in your location!
+                    </div>
+                    <div class="half consultationBox">
+                        <label>Consultation</label>
+                        <input type="radio" id="self" name="Consultation" value="SELF"> Self
+                        <!-- <label for="self">Self</label> -->
+                        <input type="radio" id="others" name="Consultation" value="others"> Others
+                        <!-- <label for="others">others</label> -->
+                    </div>
+                    <div class="half">
+                        <label>Test name</label>
+                        <input type="text" />
+                    </div>
+                    <div class="half">
+                        <label>Date</label>
+                        <input type="date" />
+                    </div>
+                    <div class="half">
+                        <label>Time slot</label>
+                        <input type="datetime-local" />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn">
+                            Proceed to pay and back
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div>
+                    <h2>Test/package name</h2>
+                    <div>
+                        <div>
+                            <h1>Rs. 1200</h1>
+                            <div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+                                <div>
+                                    <p>Lorem Ipsum is the dummy text.</p>
+                                </div>
+
+                            </div>
+                        </div>
+    </section>
+</body>
+
+</html>
