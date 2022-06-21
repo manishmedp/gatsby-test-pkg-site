@@ -6,18 +6,16 @@
 
   font-family: "Montserrat", sans-serif;
 }
-.heading {
-  color: rebeccapurple;
-}
-.nav-links {
+
+.navLinks {
   display: flex;
   list-style: none;
   padding-left: 0;
 }
-.nav-link-item {
+.navLinkItem {
   padding-right: 2rem;
 }
-.nav-link-text {
+.navLinkText {
   color: black;
   text-decoration: none;
   font-weight: regular;
@@ -33,25 +31,6 @@
   padding: 0 2px;
 }
 
-.cards{
-  
-  width: 100%;
-  
-}
-
-.cardItems{
-  
-  
-  
-  
-  width: max-content;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  margin: 0px auto;
-  gap: 0;
-  
-  
-}
 
 
 

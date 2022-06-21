@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    contactBox, btn,
+    contactBox, 
     footerBox, footerRow, firstRow, secondRow,
     left, leftCol, right, rightRow,
 } from "./Footer.module.css";
@@ -23,12 +23,12 @@ const Footer = () => {
                 <form action="#" method="post">
                     <div>
                         <input type="text" placeholder="Type in your query" />
-                        <button type="submit" className={btn}>
+                        <button type="submit" >
                             Send
                         </button>
                     </div>
                 </form>
-                <p>Or call us at &nbsp; <img width="15px" height="15px" src={callLogo} /> &nbsp; + 91
+                <p>Or call us at &nbsp; <img alt="" width="15px" height="15px" src={callLogo} /> &nbsp; + 91
                     9999999999</p>
             </div>
             {/* <!-- contact div ends here --> */}
@@ -37,10 +37,10 @@ const Footer = () => {
                 <div className={footerRow}>
                     <div className={firstRow}>
                         <div className={left}>
-                            <img width="100px" height="100px" src={Logo} />
+                            <img width="100px" alt="" height="100px" src={Logo} />
                         </div>
                         <div className={right}>
-                            <img width="35px" height="35px" src={arrowUp} />
+                            <img width="35px" alt="" height="35px" src={arrowUp} />
                         </div>
                     </div>
                     <div className={secondRow}>
@@ -55,10 +55,10 @@ const Footer = () => {
                         </div>
                         <div className={`${right} ${rightRow}`}>
                             <div style={{ width: "70%" }}></div>
-                            <img width="35px" height="35px" src={img1} />
-                            <img width="35px" height="35px" src={img2} />
-                            <img width="35px" height="35px" src={img3} />
-                            <img width="35px" height="35px" src={img4} />
+                            <img width="35px" alt="" height="35px" src={img1} />
+                            <img width="35px" alt="" height="35px" src={img2} />
+                            <img width="35px" alt="" height="35px" src={img3} />
+                            <img width="35px" alt="" height="35px" src={img4} />
                         </div>
                     </div>
                 </div>

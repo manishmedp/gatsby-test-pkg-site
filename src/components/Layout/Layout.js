@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
 import React, { useState } from "react"
-import Card from "../Card/Card"
+// import Card from "../Card/Card"
 import {
   container,
   navLinks,
@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
         <nav>
           <ul className={navLinks}>
             <li className={navLinkItem}>
-              <Link to="/" className={navLinkText}>
+              <Link to="/book/tests" className={navLinkText}>
                 <span
                   onClick={() => {
                     setAllMenu(true)
@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
               </Link>
             </li>
             <li className={navLinkItem}>
-              <Link to="/" className={navLinkText}>
+              <Link to="/book/tests" className={navLinkText}>
                 <span
                   onClick={() => {
                     setAllMenu(false)
@@ -91,7 +91,7 @@ const Layout = ({ children }) => {
               </Link>
             </li>
             <li className={navLinkItem}>
-              <Link to="/" className={navLinkText}>
+              <Link to="/book/tests" className={navLinkText}>
               <span
                 onClick={() => {
                   setAllMenu(false)

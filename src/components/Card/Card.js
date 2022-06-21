@@ -66,7 +66,7 @@ const Card = ({
           <div className={cardDescription}>
             <div className={ul}>{isPackage && tests.map(testLists)}</div>
             <a
-              href={kebabCase(fullName)}
+              href={"/book/" + kebabCase(fullName) + "/form/"}
               className={cardDescriptionSeeMore}
               key={id}
               target="_blank"
@@ -77,7 +77,7 @@ const Card = ({
           </div>
           <div className={cardFooter}>
             <a
-              href={kebabCase(fullName)}
+              href={"/book/" + kebabCase(fullName) + "/form/"}
               target="_blank"
               rel="https://gatsbytestpkgsite.gatsbyjs.io"
             >
