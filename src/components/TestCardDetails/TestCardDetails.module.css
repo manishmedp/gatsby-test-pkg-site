@@ -1,0 +1,130 @@
+*{
+    margin: 0%;
+}
+.main{
+    margin: 0;
+    background-color:rgba(0,0,0,0.2);
+    height: 100vh;
+    position: relative;
+}
+.btn{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.singleCategoryBox{
+    position: relative;
+    margin: auto;
+    top: 4rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    width: 40vw;
+    height: fit-content;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+.singleCategoryBox .closeBtn{
+    width: 100%;   
+    text-align: right;
+    margin-bottom: 20px;
+    transform: translateX(10px);
+}
+.singleCategoryBox .categoryInfo{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-size: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid #2d3b49;
+}
+.singleCategoryBox .categoryInfo div{
+    padding-left: 20px;
+    color: #2d3b49;
+    font-weight: 400;
+    width: auto;
+}
+.singleCategoryBox .categoryInfo div h6,.singleCategoryBox .contentInfo div h6{
+    font-size: 11px;
+    opacity: 0.8;
+    line-height: 2.23;
+}
+.singleCategoryBox .contentInfo{
+    padding: 30px 10px;
+}
+.singleCategoryBox .contentInfo .left{
+    width: 50%;
+}
+.singleCategoryBox .contentInfo .right{
+    float: right; 
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.bookBtn{
+    cursor: pointer;
+}
+
+.singleCategoryBox div .bookBtn{
+    background-color: #2d3b49;
+    color: #fff;
+    padding: 9px 26px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    font-size: 11px;
+    width: fit-content;
+}
+.price{
+    margin-left: auto;
+}
+
+/* ------------------------------------------------------------- */
+/*              RESPONSIVE BEHAVIOUR STYLING                     */
+/* ------------------------------------------------------------- */
+
+
+@media (min-width: 100px) and (max-width: 900px) {
+    section{
+        width: fit-content;
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-height: 100vh;
+        max-height: fit-content;
+    }
+    section .singleCategoryBox{
+        width: 80vw;
+    }
+    section .singleCategoryBox .closeBtn{
+        width: 80%;
+    }
+    section .singleCategoryBox .categoryInfo img{
+        margin: 20px 2px;
+    }
+    section .singleCategoryBox .categoryInfo,
+    section .singleCategoryBox .categoryInfo div,
+     .price{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        margin-left: 0;
+        padding-top: 2px;
+        margin-top: 2px;
+        padding-left: 5px;
+    }
+    section .singleCategoryBox .contentInfo{
+        flex-direction: column;
+    }
+    section .singleCategoryBox .contentInfo .left,
+    section .singleCategoryBox .contentInfo .right{
+        width: 90%;
+        /* float: left; */
+        align-items: flex-start;
+    }
+}

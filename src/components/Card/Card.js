@@ -66,7 +66,7 @@ const Card = ({
           <div className={cardDescription}>
             <div className={ul}>{isPackage && tests.map(testLists)}</div>
             <a
-              href={"/book/" + kebabCase(fullName) + "/form/"}
+              href={"/book/" + kebabCase(fullName) + "/details/"}
               className={cardDescriptionSeeMore}
               key={id}
               target="_blank"
