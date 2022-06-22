@@ -43,7 +43,7 @@ function CardComponent({ isPackage, fullName, offerPrice, tests, testType }) {
           </div>
           <div className={price}>
             <h2>{isPackage && offerPrice}</h2>
-            <h2>{!isPackage && offerPrice.length === 0 ? "NA" : offerPrice}</h2>
+            <h2>{!isPackage && (offerPrice.length === 0 ? "NA" : offerPrice)}</h2>
           </div>
         </div>
         {/* <!-- categoryInfo div closes here --> */}

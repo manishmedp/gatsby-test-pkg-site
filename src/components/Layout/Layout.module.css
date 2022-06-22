@@ -14,6 +14,7 @@
 }
 .navLinkItem {
   padding-right: 2rem;
+  cursor: pointer;
 }
 .navLinkText {
   color: black;
