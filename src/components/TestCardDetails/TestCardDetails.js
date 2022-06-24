@@ -14,6 +14,8 @@ import {
   right,
   bookBtn,
   btn,
+  
+  contentInfoWrapper
 } from "./TestCardDetails.module.css"
 function CardComponent({ isPackage, fullName, offerPrice, tests, testType }) {
   let isTestLengthBigger = false
@@ -22,7 +24,11 @@ function CardComponent({ isPackage, fullName, offerPrice, tests, testType }) {
   }
 
   const testLists = test => {
-    return <h6 key={test.id}>✓ {test.fullName}</h6>
+    return (
+      <h6 key={test.id}>
+        ✓ {test.fullName}
+      </h6>
+    )
   }
 
   return (
@@ -43,20 +49,24 @@ function CardComponent({ isPackage, fullName, offerPrice, tests, testType }) {
           </div>
           <div className={price}>
             <h2>{isPackage && offerPrice}</h2>
-            <h2>{!isPackage && (offerPrice.length === 0 ? "NA" : offerPrice)}</h2>
+            <h2>
+              {!isPackage && (offerPrice.length === 0 ? "NA" : offerPrice)}
+            </h2>
           </div>
         </div>
         {/* <!-- categoryInfo div closes here --> */}
-        <div className={contentInfo} style={{ display: "flex" }}>
-          <div className={left}>
-            {isPackage && !isTestLengthBigger
-              ? tests.map(testLists)
-              : isPackage && tests.slice(0, tests.length / 2).map(testLists)}
-          </div>
-          <div className={right}>
-            {isPackage &&
-              isTestLengthBigger &&
-              tests.slice(tests.length / 2, tests.length).map(testLists)}
+        <div className={contentInfo} >
+          <div className={contentInfoWrapper}>
+            <div className={left}>
+              {isPackage && !isTestLengthBigger
+                ? tests.map(testLists)
+                : isPackage && tests.slice(0, tests.length / 2).map(testLists)}
+            </div>
+            <div className={right}>
+              {isPackage &&
+                isTestLengthBigger &&
+                tests.slice(tests.length / 2, tests.length).map(testLists)}
+            </div>
           </div>
         </div>
         {/* <!-- content info ends here --> */}

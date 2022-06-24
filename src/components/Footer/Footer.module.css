@@ -1,12 +1,12 @@
   /* footer div styling */
-  /* .blueDiv {
+  .blueDiv {
     width: 100vw;
     background-color: #2D3B49;
     padding-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-} */
+}
 
 .contactBox {
     border-top: 2px solid #f1f2f4;
@@ -105,45 +105,56 @@
 
 @media (min-width: 100px) and (max-width: 900px) {
 
-
+    .blueDiv{
+        width: 100vw;
+        overflow: hidden;
+    }
     .hrDiv {
         width: 80vw;
         margin-left: auto;
     }
 
 
-    section .searchDivWrap .blueDiv .contactBox,
-    section .searchDivWrap .blueDiv .contactBox form div input,
-    section .searchDivWrap .blueDiv .contactBox form div button,
-    section .searchDivWrap .blueDiv .footerBox {
+     .contactBox,
+     .contactBox form div input,
+     .contactBox form div button,
+     .footerBox {
         width: 75%;
     }
 
-    section .searchDivWrap .blueDiv .contactBox form div button {
+    .contactBox form div button {
         margin: auto;
         transform: translateX(1%);
+    }   
+
+    .footerBox{
+        padding: 6vh 10vw;
+        margin: 0;
+        box-sizing: border-box;
+        width: 70vw;
+        /* background-color: yellow; */
     }
 
-    section .searchDivWrap .blueDiv .footerBox .footerRow .firstRow {
+    .footerBox .footerRow .firstRow {
         padding: 0;
         width: 100%;
     }
 
-    section .searchDivWrap .blueDiv .footerBox .footerRow .secondRow {
+    .footerRow .secondRow {
         flex-direction: column;
-        margin: auto;
+        margin: 20px auto;
         padding: 0;
         margin-bottom: 0;
         padding-bottom: 0;
     }
 
-    section .searchDivWrap .blueDiv .footerBox .footerRow .secondRow .right {
-        transform: translateX(10%);
+    .rightRow {
+        transform: translateX(5vw);
         margin-bottom: 0;
         padding-bottom: 0;
     }
 
-    section .searchDivWrap .blueDiv {
+    .blueDiv {
         width: 100vw;
         margin-bottom: 0;
         padding-bottom: 0;

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import Logo from "../../images/Asset 1-8.png"
 import back from "../../images/Component 29 – 17.png"
 import search from "../../images/Component 9 – 1.png"
@@ -27,14 +28,14 @@ const SearchDiv = () => {
       </div>
       <section>
         <div className={logo}>
-          <a href="/">
+          <Link to="/">
             <img width="60px" height="70px" src={Logo} alt="logo" />
-          </a>
+          </Link>
         </div>
         <div className={bookTestDiv}>
-          <a href="/">
+          <Link to="/">
             <img width="25px" height="25px" src={back} alt="back" />
-          </a>
+          </Link>
           &nbsp; &nbsp;
           <h2>Book a test</h2>
         </div>
