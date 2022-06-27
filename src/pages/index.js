@@ -1,9 +1,13 @@
 import React from "react"
 import Homepage from "../components/Homepage/Homepage"
+import Seo from "../components/Seo"
 
 const IndexPage = () => {
   return (
-    <Homepage/>
+    <div>
+      <Seo title="Dr. Swasth"/>
+      <Homepage />
+    </div>
   )
 }
 

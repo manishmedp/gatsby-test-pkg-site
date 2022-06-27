@@ -1,11 +1,16 @@
 import React from 'react'
 import TestCardDetails from "../../../components/TestCardDetails/TestCardDetails"
 import { graphql } from 'gatsby';
+import Seo from "../../../components/Seo"
 
 const details = ( {data }) => {
     console.log("data: ", data);
   return (
-    <TestCardDetails isPackage={true} fullName={data.package.name} tests={data.package.tests} offerPrice={data.package.offerPrice}/>
+    <div>
+      <Seo title={data.package.name}/>
+      <TestCardDetails isPackage={true} fullName={data.package.name} tests={data.package.tests} offerPrice={data.package.offerPrice}/>
+    </div>
+    
   )
 }
 

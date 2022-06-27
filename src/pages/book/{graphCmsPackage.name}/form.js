@@ -1,10 +1,21 @@
 import React from "react"
 import BookingForm from "../../../components/Book/BookingForm"
 import { graphql } from "gatsby"
+import Seo from "../../../components/Seo"
 
-export default function Form({data}) {
+export default function Form({ data }) {
   console.log("book data", data)
-  return <BookingForm tests={data.package.tests} fullName={data.package.name} isPackage={true} offerPrice={data.package.offerPrice}/>
+  return (
+    <div>
+      <Seo title={data.package.name}/>
+      <BookingForm
+        tests={data.package.tests}
+        fullName={data.package.name}
+        isPackage={true}
+        offerPrice={data.package.offerPrice}
+      />
+    </div>
+  )
 }
 
 export const pageQuery = graphql`
