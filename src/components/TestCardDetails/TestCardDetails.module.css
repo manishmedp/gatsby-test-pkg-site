@@ -99,7 +99,7 @@
 /*              RESPONSIVE BEHAVIOUR STYLING                     */
 /* ------------------------------------------------------------- */
 
-
+/* 
 @media (min-width: 100px) and (max-width: 900px) {
     section{
         width: fit-content;
@@ -137,6 +137,21 @@
     section .singleCategoryBox .contentInfo .right{
         width: 90%;
         /* float: left; */
-        align-items: flex-start;
+        /* align-items: flex-start;
     }
-}
+} */ 
+
+
+@media only screen and  (max-width: 840px){
+    .singleCategoryBox{
+        margin: 0;
+        width: 100%;
+    }
+    .main{
+        height: fit-content;
+        background-color: #fff;
+    }
+    .contentInfoWrapper{
+        display: block;
+    }
+  }

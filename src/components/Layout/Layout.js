@@ -8,19 +8,19 @@ import {
   navLinkText,
   navLinkTextActive,
 } from "./Layout.module.css"
-import AllMenuItems from "../AllMenuItems/AllMenuItems"
-import TestItems from "../TestItems/TestItems"
+// import AllMenuItems from "../AllMenuItems/AllMenuItems"
+// import TestItems from "../TestItems/TestItems"
 import PackageItems from "../PackageItems.js/PackageItems"
 // import ReactPaginate from "react-paginate"
 // import Pagination from "react-js-pagination"
 // import TestDetails from "../TestDetails/TestDetails"
 
 const Layout = ({ children }) => {
-  const [allMenu, setAllMenu] = useState(true)
-  const [packagesMenu, setPackegesMenu] = useState(false)
-  const [testsMenu, setTestsMenu] = useState(false)
+  // const [allMenu, setAllMenu] = useState(true)
+  const [packagesMenu, setPackegesMenu] = useState(true)
+  // const [testsMenu, setTestsMenu] = useState(false)
 
-  const { allGraphCmsDiagnosticTest, allGraphCmsPackage } =
+  const { /*allGraphCmsDiagnosticTest,*/ allGraphCmsPackage } =
     useStaticQuery(graphql`
       query MyQuery {
         allGraphCmsDiagnosticTest {
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
       <div className={container}>
         <nav>
           <ul className={navLinks}>
-            <li className={navLinkItem}>
+            {/* <li className={navLinkItem}>
               <span className={navLinkText}>
                 <span
                   onClick={() => {
@@ -74,23 +74,23 @@ const Layout = ({ children }) => {
                   All
                 </span>
               </span>
-            </li>
+            </li> */}
             <li className={navLinkItem}>
               <span className={navLinkText}>
                 <span
                   onClick={() => {
-                    setAllMenu(false)
+                    // setAllMenu(false)
                     setPackegesMenu(true)
-                    setTestsMenu(false)
+                    // setTestsMenu(false)
                   }}
                   className={packagesMenu ? navLinkTextActive : ""}
                   aria-hidden="true"
                 >
-                  Packages
+                  All Packages
                 </span>
               </span>
             </li>
-            <li className={navLinkItem}>
+            {/* <li className={navLinkItem}>
               <span  className={navLinkText}>
               <span
                 onClick={() => {
@@ -105,27 +105,27 @@ const Layout = ({ children }) => {
                 Tests
               </span>
               </span>
-            </li>
+            </li> */}
           </ul>
         </nav>
 
-        {allMenu && (
+        {/* {allMenu && (
           <AllMenuItems
             testData={allGraphCmsDiagnosticTest.nodes}
             packageData={allGraphCmsPackage.nodes}
           />
-        )}
+        )} */}
 
         {packagesMenu && (
           <PackageItems packageData={allGraphCmsPackage.nodes} />
         )}
 
-        {testsMenu && (
+        {/* {testsMenu && (
           <TestItems
             testData={allGraphCmsDiagnosticTest.nodes}
             totalPages={Math.ceil(allGraphCmsDiagnosticTest.nodes.length / 6)}
           />
-        )}
+        )} */}
       </div>
     </div>
   )

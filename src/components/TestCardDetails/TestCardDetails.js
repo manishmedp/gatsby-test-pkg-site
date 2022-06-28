@@ -10,8 +10,8 @@ import {
   categoryInfo,
   price,
   contentInfo,
-  left,
-  right,
+  // left,
+  // right,
   bookBtn,
   btn,
   
@@ -57,12 +57,12 @@ function CardComponent({ isPackage, fullName, offerPrice, tests, testType }) {
         {/* <!-- categoryInfo div closes here --> */}
         <div className={contentInfo} >
           <div className={contentInfoWrapper}>
-            <div className={left}>
+            <div>
               {isPackage && !isTestLengthBigger
                 ? tests.map(testLists)
                 : isPackage && tests.slice(0, tests.length / 2).map(testLists)}
             </div>
-            <div className={right}>
+            <div>
               {isPackage &&
                 isTestLengthBigger &&
                 tests.slice(tests.length / 2, tests.length).map(testLists)}

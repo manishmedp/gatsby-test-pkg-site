@@ -1,18 +1,6 @@
 import { Link } from "gatsby"
 import {
-  avatar,
-  buttonText,
-  card,
-  cardButton,
-  cardContent,
-  cardDescription,
-  cardDescriptionSeeMore,
-  cardFooter,
-  cardHeader,
-  cardPrice,
-  headerCategory,
-  headerTestTitle,
-  ul,
+  categoryBox, left, btn, right,
 } from "./Card.module.css"
 
 export default PackageCard = ({
@@ -24,32 +12,21 @@ export default PackageCard = ({
   id,
 }) => {
   return (
-    <div className={card}>
-      <div className={cardContent}>
-        <div className={cardHeader}>
+
+      <div className={categoryBox}>
+        <div className={left}>
+          <h4>{fullName}</h4>
+          <h5>{testType}</h5>
+          <h3>
+              Rs. 500
+            </h3>
+            <h6>✓ {fullName}</h6>
+            <h6>✓ {shortName}</h6>
+            <h6>✓ {testType}</h6>
+            <h6>✓ {lisCode}</h6>
+            <h6>✓ {date}</h6>
+
           <div>
-            <h4 className={headerTestTitle}>{fullName}</h4>
-            <p className={headerCategory}>{testType}</p>
-          </div>
-          <div>
-            <img
-              src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/68.png"
-              className={avatar}
-              alt="..."
-            />
-          </div>
-        </div>
-        <div>
-          <h2 className={cardPrice}>Rs. 500</h2>
-        </div>
-        <div className={cardDescription}>
-          <div className={ul}>
-            <div>✓ {fullName}</div>
-            <div>✓ {shortName}</div>
-            <div>✓ {testType}</div>
-            <div>✓ {lisCode}</div>
-            <div>✓ {date}</div>
-          </div>
           <Link
             to="/description"
             className={cardDescriptionSeeMore}
@@ -63,10 +40,8 @@ export default PackageCard = ({
           >
             See all details...
           </Link>
-        </div>
-        <div className={cardFooter}>
-          <button className={cardButton}>
-            <Link
+          </div>
+          <Link
               to="description"
               className={buttonText}
               state={{
@@ -77,11 +52,20 @@ export default PackageCard = ({
                 date: date,
               }}
             >
-              Book Now
+              <button className={btn}>Book now</button>
             </Link>
-          </button>
+          
+        </div>
+        <div className={right}>
+          <img
+            style={{ borderRadius: "50%" }}
+            width="50px"
+            height="50px"
+            src={img}
+            alt="avatar"
+          />
         </div>
       </div>
-    </div>
+
   )
 }

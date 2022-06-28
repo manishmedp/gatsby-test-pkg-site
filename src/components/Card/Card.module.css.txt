@@ -1,0 +1,96 @@
+.avatar {
+  width: 63px;
+  height: 63px;
+  border-radius: 50px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardContent {
+  padding: 25px 0px;
+  border-top: 1px solid #67676799;
+  border-bottom: 1px solid #67676799;
+  /* min-height: 361.6px; */
+}
+
+.cardHeight{
+    min-height: 305.6px;
+}
+
+.headerTestTitle{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.headerCategory{
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 1;
+    color: #676767;
+    margin: 8px 0px;
+}
+
+.card{
+    width: 375px;
+    margin: 25px 0px;
+    padding: 0px 35px;
+    color: #2d3b49;
+}
+
+.cardPrice{
+    margin-top: 10px;
+    margin-bottom: 24px;
+}
+
+.cardDescription{
+    display: flex;
+    justify-content: space-between;
+    min-height: 120px;
+}
+
+.cardDescriptionSeeMore{
+    font-size: 12px;
+    align-self: flex-end;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: #676767;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ul{
+    list-style: none;
+    line-height: 1.5rem;
+    padding: 0px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #676767;
+    margin: 0px;
+}
+
+.cardButton{
+    width: 125px;
+    height: 30px;
+    background-color: #2d3b49;
+    border: none;
+    color: #ffffff;
+    font-weight: 100;
+    font-size: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.buttonText{
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.cardFooter{
+    margin-top: 24px;
+    margin-bottom:5px;
+}
