@@ -27,6 +27,10 @@ h2 {
     width: 100%;
 }
 
+.errorBox {
+    border-color: red !important;
+}
+
 .btn {
     border: none;
     background-color: #2d3b49;

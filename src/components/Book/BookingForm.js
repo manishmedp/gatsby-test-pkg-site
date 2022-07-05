@@ -16,6 +16,7 @@ import {
   btn,
   packageDetailsLink,
   loader,
+  errorBox,
 } from "./Book.module.css"
 import { navigate } from "gatsby"
 import CircularProgress from "@mui/material/CircularProgress"
@@ -28,9 +29,12 @@ import { Link } from "gatsby"
 import { useSnackbar } from "notistack"
 
 const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
-  const { enqueueSnackbar } = useSnackbar()
+  /* these are our states */
+  const { enqueueSnackbar } = useSnackbar() 
   const [isDisabled, setIsDisabled] = useState(false)
-  const[loading, setLoading] = useState(false)
+  const [validated, setValidated] = useState(false)
+  const [errorName, setErrorName] = useState("")
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     fName: "",
     email: "",
@@ -44,9 +48,10 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
     consultation: "",
     timeSlotUnix: "",
   })
-
+  /* this function handles change in input of form to store value in stateful manner*/
   const inputHandler = e => {
     const { name, value } = e.target
+    setErrorName("")
     setFormData(prev => {
       return {
         ...prev,
@@ -54,10 +59,9 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
       }
     })
   }
-
+  /* this function helps in getting input of time slot section and convert it into unix format */
   const timeHandler = e => {
     const { name, value } = e.target
-
     const newValue = Math.floor(new Date(value).getTime() / 1000)
     setFormData(prev => {
       return {
@@ -68,6 +72,8 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
     })
   }
 
+
+  /* here we define graphcms endpoint for mutation and sending our data */
   const graphcms = new GraphQLClient(
     "https://api-ap-south-1.graphcms.com/v2/cl1kjl3cx7geq01z62361cfm1/master",
     {
@@ -77,14 +83,78 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
     }
   )
 
+
+  /* this is our custom function for sending error messages in validation of form */
+  const validationMesaage = value => {
+    return enqueueSnackbar(`Please enter ${value}`, {
+      variant: "error",
+      autoHideDuration: 2000,
+      preventDuplicate: true
+    })
+  }
+
+
+  /* this is our form validator function where we actually validate the form */
+  const formValidator = () => {
+    console.log(typeof(formData.mobNum));
+    if (formData.fName.length === 0) {
+      validationMesaage("Full Name")
+      setErrorName("fName")
+    } else if (formData.email.length === 0) {
+      validationMesaage("email")
+      setErrorName("email")
+    } else if (formData.mobNum.length === 0) {
+      validationMesaage("phone number")
+      setErrorName("mobNum")
+    } else if (formData.address.length === 0) {
+      validationMesaage("address")
+      setErrorName("address")
+    } else if (formData.city.length === 0) {
+      validationMesaage("city")
+      setErrorName("city")
+    } else if (formData.pincode.length === 0) {
+      validationMesaage("pincode")
+      setErrorName("pincode")
+    } else if (formData.consultation.length === 0) {
+      validationMesaage("consultation")
+      setErrorName("consultation")
+    } else if (formData.bookingDate.length === 0) {
+      validationMesaage("Date for Booking")
+      setErrorName("bookingDate")
+    } else if (formData.timeSlot.length === 0) {
+      validationMesaage("time slot")
+      setErrorName("timeSlot")
+    } 
+     else if (
+      !formData.email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      validationMesaage("Valid email")
+      setErrorName("email")
+    } else if (!formData.mobNum.match(/^\d{10}$/)) {
+      validationMesaage("Valid Phone Number")
+      setErrorName("mobNum")
+    } else if (!formData.pincode.match(/^\d{6}$/)){
+      validationMesaage("Valid Pincode")
+      setErrorName("pincode")
+    }
+    else {
+      setValidated(true)
+    }
+  }
+
+
+  /* this function handles form submission */
   const submitHandler = async e => {
     e.preventDefault()
     console.log(formData)
     setIsDisabled(true)
     setLoading(true)
-    try {
-      const data = await graphcms.request(
-        `mutation addBooking($price: String!,
+    if (validated) {
+      try {
+        const data = await graphcms.request(
+          `mutation addBooking($price: String!,
         $patientEmail: String!,
         $patientFullname: String!,
         $address: String!,
@@ -116,33 +186,39 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
               patientFullname
             }
         }`,
-        {
-          price: offerPrice.toString(),
-          patientEmail: formData.email,
-          patientFullname: formData.fName,
-          address: formData.address,
-          mobile: formData.mobNum,
-          city: formData.city,
-          pincode: formData.pincode,
-          bookingFor: formData.consultation,
-          date: formData.bookingDate,
-          time: formData.timeSlotUnix,
-          type: "package",
-          bookingStatus: "booking_done",
-          id: packageId.toString(),
-        }
-      )
-      console.log(JSON.stringify(data, undefined, 2))
-      // setIsDisabled(false)
+          {
+            price: offerPrice.toString(),
+            patientEmail: formData.email,
+            patientFullname: formData.fName,
+            address: formData.address,
+            mobile: formData.mobNum,
+            city: formData.city,
+            pincode: formData.pincode,
+            bookingFor: formData.consultation,
+            date: formData.bookingDate,
+            time: formData.timeSlotUnix,
+            type: "package",
+            bookingStatus: "booking_done",
+            id: packageId.toString(),
+          }
+        )
+        console.log(JSON.stringify(data, undefined, 2))
+        // setIsDisabled(false)
+        setLoading(false)
+        enqueueSnackbar("Booking Successful", {
+          variant: "success",
+          autoHideDuration: 3000,
+        })
+        navigate("/book/tests")
+      } catch (error) {
+        console.error(JSON.stringify(error, undefined, 2))
+        setLoading(false)
+        setIsDisabled(false)
+        enqueueSnackbar("Booking Not Successful", { variant: "error", preventDuplicate: true })
+      }
+    } else {
+      setIsDisabled(false)
       setLoading(false)
-      enqueueSnackbar("Booking Successful", {
-        variant: "success",
-        autoHideDuration: 3000,
-      })
-      navigate("/book/tests")
-    } catch (error) {
-      console.error(JSON.stringify(error, undefined, 2))
-      enqueueSnackbar("Booking Not Successful", { variant: "error" })
     }
   }
 
@@ -176,6 +252,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="name">Full name</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "fName") ? errorBox : ""}
                   type="text"
                   id="name"
                   name="fName"
@@ -187,6 +264,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="email">E-mail</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "email") ? errorBox : ""}
                   type="email"
                   id="email"
                   name="email"
@@ -199,6 +277,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <input
                   disabled={isDisabled}
                   type="text"
+                  className={(errorName === "mobNum") ? errorBox : ""}
                   id="mobileNumber"
                   name="mobNum"
                   onChange={inputHandler}
@@ -209,6 +288,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="address">Address</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "address") ? errorBox : ""}
                   type="text"
                   id="address"
                   name="address"
@@ -220,6 +300,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="city">City</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "city") ? errorBox : ""}
                   type="text"
                   id="city"
                   name="city"
@@ -231,6 +312,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="pincode">Pincode</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "pincode") ? errorBox : ""}
                   type="text"
                   id="pincode"
                   name="pincode"
@@ -279,6 +361,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="date">Date</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "bookingDate") ? errorBox : ""}
                   type="date"
                   id="date"
                   name="bookingDate"
@@ -290,6 +373,7 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 <label htmlFor="timeSlot">Time slot</label>
                 <input
                   disabled={isDisabled}
+                  className={(errorName === "timeSlot") ? errorBox : ""}
                   type="datetime-local"
                   id="timeSlot"
                   name="timeSlot"
@@ -298,7 +382,12 @@ const BookingForm = ({ fullName, offerPrice, tests, isPackage, packageId }) => {
                 />
               </div>
               <div>
-                <button type="submit" className={btn} disabled={isDisabled}>
+                <button
+                  type="submit"
+                  className={btn}
+                  disabled={isDisabled}
+                  onClick={formValidator}
+                >
                   Proceed to pay and back
                 </button>
               </div>
