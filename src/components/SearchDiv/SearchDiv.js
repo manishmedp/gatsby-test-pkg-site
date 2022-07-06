@@ -20,7 +20,7 @@ import {
   tagBox,
 } from "./SearchDiv.module.css"
 import Tag from "./Tag"
-import Card from "../Card/Card"
+// import Card from "../Card/Card"
 // import PackageItems from "../PackageItems.js/PackageItems"
 
 const SearchDiv = () => {
@@ -53,24 +53,28 @@ const SearchDiv = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
     // Search();
     // allGraphCmsPackage.nodes.map((p, id)=>{
     //   return console.log(p.name)
     // })
-    searchItems(searchInput)
-    console.log(searchInput + " ");
+    e.preventDefault()
+    // searchItems(searchInput)
+    // console.log(searchInput + " ");
     // console.log("form submitted");
   }
 
-  const searchItems = (searchValue) => {
-    setSearchInput(searchValue)
-    if (searchInput !== '') {
-      const filtereditem = allGraphCmsPackage.nodes.filter((item) => {
-        console.log(item)
-        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-      })
-      setFilteredResults(filtereditem)
+  const searchItems = (e) => {
+    setSearchInput(e.target.value)
+    const searchValue = e.target.value
+    if (searchValue !== '') {
+      // const filtereditem = allGraphCmsPackage.nodes.filter((item) => {
+      //   console.log(item)
+      //   return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+      // })
+      setFilteredResults(allGraphCmsPackage.nodes.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(searchValue.toLowerCase())
+      }))
     }
     else {
       setFilteredResults(allGraphCmsPackage.nodes)
@@ -99,13 +103,13 @@ const SearchDiv = () => {
         </div>
         <hr style={{ width: "80%" }} />
         <div className={searchDiv}>
-          <form action="#" onSubmit={handleFormSubmit}>
+          <form action="/" onSubmit={handleFormSubmit}>
             <div>
               <img width="10px" height="10px" src={search} alt="search" />
               <input
                 type="text"
                 placeholder="Search for a test or package by name"
-                onChange={(e) => searchItems(e.target.value)}
+                onChange={searchItems}
               />
             </div>
 
@@ -125,25 +129,9 @@ const SearchDiv = () => {
 
         <div className={categoryDiv}>
           {searchInput.length > 1 ? (
-            filteredResults.map((item) => {
-              return (
-                <>
-                 <Card
-                  key={item.id}
-                  item={item}
-                  fullName={item.name}
-                  shortName={item.mrp}
-                  offerPrice={item.offerPrice}
-                  date={item.updatedAt}
-                  lisCode={item.name}
-                  isPackage={true}
-                  tests={item.tests}
-                />
-                </>
-              )
-            })
+            <Layout searchResults={filteredResults} isSearched={true}/>
           ) : (
-            <Layout />
+            <Layout isSearched={false}/>
           )}
 
           {/* <div className={categoryType}>
