@@ -1,10 +1,11 @@
 
 .categoryBox{
-    width: 330px;
+    width: 310px;
+    max-width: 320px;
     /* height: 41%; */
     height: fit-content;
     min-height: 265px;
-    margin: 20px 8px;
+    margin: 20px 5px;
     padding: 20px 0;
     border-top: 1.5px solid #2d3b4947;
     border-bottom: 1.5px solid #2d3b4947;

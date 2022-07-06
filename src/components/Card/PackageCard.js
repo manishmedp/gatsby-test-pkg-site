@@ -1,4 +1,7 @@
+import React from "react"
 import { Link } from "gatsby"
+import img from "../../images/Mask Group 22.png"
+
 import {
   categoryBox, left, btn, right,
 } from "./Card.module.css"
@@ -29,7 +32,7 @@ export default PackageCard = ({
           <div>
           <Link
             to="/description"
-            className={cardDescriptionSeeMore}
+            // className={cardDescriptionSeeMore}
             state={{
               fullName: fullName,
               shortName: shortName,
@@ -43,7 +46,7 @@ export default PackageCard = ({
           </div>
           <Link
               to="description"
-              className={buttonText}
+              // className={buttonText}
               state={{
                 fullName: fullName,
                 shortName: shortName,
