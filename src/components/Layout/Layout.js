@@ -15,7 +15,7 @@ import PackageItems from "../PackageItems.js/PackageItems"
 // import Pagination from "react-js-pagination"
 // import TestDetails from "../TestDetails/TestDetails"
 
-const Layout = ({ children }) => {
+const Layout = ({searchResults, isSearched}) => {
   // const [allMenu, setAllMenu] = useState(true)
   const [packagesMenu, setPackegesMenu] = useState(true)
   // const [testsMenu, setTestsMenu] = useState(false)
@@ -116,7 +116,11 @@ const Layout = ({ children }) => {
           />
         )} */}
 
-        {packagesMenu && (
+        {isSearched && packagesMenu && (
+          <PackageItems packageData={searchResults}/>
+        )}
+
+        {!isSearched && packagesMenu && (
           <PackageItems packageData={allGraphCmsPackage.nodes} />
         )}
 
